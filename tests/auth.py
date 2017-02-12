@@ -13,6 +13,7 @@ class AuthTest(unittest.TestCase):
         stub.returns(fixtures.info)
         coinpit_me = Client(fixtures.private_key)
         info = coinpit_me.info()
+        stub.restore()
         self.assertEqual(info, fixtures.info.json())
 
     def test_no_auth_connect(self):
@@ -21,8 +22,11 @@ class AuthTest(unittest.TestCase):
             coinpit_me.connect()
 
     def test_auth(self):
+        stub = sinon.stub(requests, "get")
+        stub.returns(fixtures.auth_info)
         coinpit_me = Client(fixtures.private_key)
         coinpit_me.connect()
+        stub.restore()
         self.assertEqual(coinpit_me.server_pub_key, fixtures.server_pub_key)
         self.assertEqual(coinpit_me.shared_secret, binascii.unhexlify(fixtures.shared_secret))
 

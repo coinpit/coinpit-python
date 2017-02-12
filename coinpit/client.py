@@ -45,5 +45,5 @@ class Client(object):
     def server_call(self, url, headers={'Accept': 'application/json'}):
         try:
             return requests.get(self.base_url + url, headers).json()
-        except Error as err:
-            print "Error calling " + self.base_url + url + "\n" + err
+        except Exception as err:
+            print "Error calling {} \n {}".format(self.base_url + url, err)
