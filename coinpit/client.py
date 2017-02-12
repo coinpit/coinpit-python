@@ -15,7 +15,6 @@ class Client(object):
 
     def info(self):
         try:
-            r = requests.get(self.base_url + "/all/info", headers={'Accept': 'application/json'})
-            return r.content
+            return requests.get(self.base_url + "/all/info", headers={'Accept': 'application/json'}).json()
         except:
             print "Error calling " + self.base_url + "/all/info" + "\n"

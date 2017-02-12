@@ -12,7 +12,7 @@ class AuthTest(unittest.TestCase):
         stub.returns(fixtures.info)
         coinpit_me = Client(fixtures.private_key)
         info = coinpit_me.info()
-        self.assertEqual(info, fixtures.info.content)
+        self.assertEqual(info, fixtures.info.json())
 
     def test_auth(self):
         self.assertEqual(1, 1)
