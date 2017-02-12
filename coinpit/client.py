@@ -13,6 +13,7 @@ class Client(object):
         self.livenet_base_url = "https://live.coinpit.io/api/v1"
         self.private_key = key
         self.user_pub_key = None
+        self.server_pub_key = None
         self.shared_secret = None
         if(self.private_key == None):
             return
@@ -25,14 +26,19 @@ class Client(object):
         self.user_pub_key = pybitcointools.privtopub(self.private_key)
         self.user_id = pybitcointools.pubtoaddr(self.user_pub_key, self.network_code)
 
-    def connect(self):
-        if (self.shared_secret != None):
+    def get_server_pubkey(self):
+        if self.server_pub_key != None:
             return
         if (self.private_key == None):
             raise ValueError('Private key needs to be set for protected endpoints')
         auth_info = self.server_call("/auth/" + self.user_pub_key)
         print "auth_info {}".format(auth_info)
-        self.server_pub_key = auth_info['serverPublicKey']
+        return auth_info['serverPublicKey']
+
+
+    def connect(self):
+        self.server_pub_key = self.get_server_pubkey()
+        print "server_pub_key", self.server_pub_key
         self.get_shared_secret()
 
     def get_shared_secret(self):

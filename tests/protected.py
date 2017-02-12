@@ -12,9 +12,12 @@ class ProtectedTest(unittest.TestCase):
         stub = sinon.stub(requests, "get")
         stub.returns(fixtures.account)
         coinpit_me = Client(fixtures.private_key)
+        stubc = sinon.stub(coinpit_me, "get_server_pubkey")
+        stubc.returns(fixtures.auth_info.json()['serverPublicKey'])
         info = coinpit_me.get_account()
         print '/account', info
         stub.restore()
+        stubc.restore()
         self.assertEqual(info, fixtures.account.json())
 
 if __name__ == '__main__':
