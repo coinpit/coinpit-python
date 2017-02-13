@@ -1,10 +1,10 @@
 import unittest
-from sinon import sinon
 import requests
 import fixtures
 import binascii
+from pycoinpit import Client
 
-from coinpit.client import Client
+from sinon import sinon
 g = sinon.init(globals())
 
 class ProtectedTest(unittest.TestCase):
@@ -15,7 +15,6 @@ class ProtectedTest(unittest.TestCase):
         stubc = sinon.stub(coinpit_me, "get_server_pubkey")
         stubc.returns(fixtures.auth_info.json()['serverPublicKey'])
         info = coinpit_me.get_account()
-        print '/account', info
         stub.restore()
         stubc.restore()
         self.assertEqual(info, fixtures.account.json())

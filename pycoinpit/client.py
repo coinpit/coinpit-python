@@ -30,15 +30,13 @@ class Client(object):
         if self.server_pub_key != None:
             return
         if (self.private_key == None):
-            raise ValueError('Private key needs to be set for protected endpoints')
+            raise ValueError('Private key needed for protected endpoints')
         auth_info = self.server_call("/auth/" + self.user_pub_key)
-        print "auth_info {}".format(auth_info)
         return auth_info['serverPublicKey']
 
 
     def connect(self):
         self.server_pub_key = self.get_server_pubkey()
-        print "server_pub_key", self.server_pub_key
         self.get_shared_secret()
 
     def get_shared_secret(self):
@@ -52,14 +50,12 @@ class Client(object):
     def get_headers(self, method, uri, body=None):
         self.connect()
         rest_url = uri
-        nonce = str(long(time.time() * 1000))  # calculate a nonce, server requests server time from client as nonce
-        # consecutive api calls should always have excat server time, use ntp
+        # Use unix time as nonce
+        nonce = str(long(time.time() * 1000))
+        # consecutive api calls should always have exact server time, use ntp
         request_string = '{"method":"' + method + '","uri":"' + rest_url + '",' + ("" if body == None else '"body":"' + body + '",') + '"nonce":' + nonce + '}'
         mac = hmac.new(self.shared_secret, request_string,    hashlib.sha256)
         sig = mac.hexdigest()
-
-        # print 'json', '{"method":"GET","uri":"' + uri + '","nonce":'+ nonce +'}'		#debug
-        # print 'sig', sig								#debug
 
         headers = {
             'Authorization': 'HMAC ' + self.user_id + ':' + sig,

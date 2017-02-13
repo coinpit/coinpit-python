@@ -1,10 +1,10 @@
 import unittest
-from sinon import sinon
 import requests
 import fixtures
 import binascii
+from pycoinpit import Client
 
-from coinpit.client import Client
+from sinon import sinon
 g = sinon.init(globals())
 
 class AuthTest(unittest.TestCase):
