@@ -1,7 +1,6 @@
 import unittest
 import requests
 import fixtures
-import binascii
 from pycoinpit import Client
 
 from sinon import sinon

@@ -52,11 +52,9 @@ class Client(object):
         rest_url = uri
         # Use unix time as nonce
         nonce = str(long(time.time() * 1000))
-        # consecutive api calls should always have exact server time, use ntp
-        request_string = '{"method":"' + method + '","uri":"' + rest_url + '",' + ("" if body == None else '"body":"' + body + '",') + '"nonce":' + nonce + '}'
+        request_string = '{"method":"' + method + '","uri":"' + rest_url  + ('",' if(body == None) else '","body":' + body + ',') + '"nonce":' + nonce + '}'
         mac = hmac.new(self.shared_secret, request_string,    hashlib.sha256)
         sig = mac.hexdigest()
-
         headers = {
             'Authorization': 'HMAC ' + self.user_id + ':' + sig,
             'Nonce': nonce,
