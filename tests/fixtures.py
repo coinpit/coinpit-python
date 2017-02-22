@@ -42,3 +42,6 @@ headers = {'Accept'       : 'application/json',
            'Nonce'        : '1452154049511'}
 auth_info = AuthResult()
 account = AccountResult()
+cancel_all = ["1"]
+
+rest_get_info = {"BTCUSD7G24": {"vol24H": {"instrument": "BTCUSD7G24", "btc": 111.83523126, "qty": 242}, "indexPrice": 1114.5}, "BTC1": {"vol24H": {"instrument": "BTC1", "btc": 2.0439, "qty": 2}, "indexPrice": 1114.5}, "BTCUSD7H03": {"vol24H": {"instrument": "BTCUSD7H03", "btc": 0, "qty": 0}, "indexPrice": 1114.5}}

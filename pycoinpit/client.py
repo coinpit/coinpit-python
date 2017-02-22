@@ -5,6 +5,7 @@ import pyelliptic
 import time
 import hmac
 import hashlib
+import orders
 
 class Client(object):
 
@@ -66,11 +67,42 @@ class Client(object):
         return self.server_call("/all/info")
 
     def get_account(self):
-        headers = self.get_headers("GET", "/account")
-        return self.server_call("/account", headers)
+        return self.auth_call("GET", "/account")
+
+    def patch_orders(self, patch_spec):
+        orders.patch(self, patch_spec)
+
+    def cancel_orders(self, cancel_spec):
+        orders.cancel(self, cancel_spec)
+
+    def cancel_all_orders(self):
+        orders.cancel_all(self)
+
+    def update_orders(self, update_spec):
+        orders.update(self, update_spec)
+
+    def create_orders(self, create_spec):
+        orders.create(self, create_spec)
+
+    def get_open_orders(self, get_open_spec):
+        orders.get_open(self, get_open_spec)
+
+    def get_closed_orders(self, get_closed_spec):
+        orders.get_closed(self, get_closed_spec)
+
+    def get_cancelled_orders(self, get_cancelled_spec):
+        orders.get_cancelled(self, get_cancelled_spec)
 
     def server_call(self, url, headers={'Accept': 'application/json'}):
         try:
             return requests.get(self.base_url + url, headers=headers).json()
         except Exception as err:
             print "Error calling {} \n {}".format(self.base_url + url, err)
+
+    def auth_call(self, method, url, body=None):
+        try:
+            headers = self.get_headers(method, url, body)
+            print "###########{}".format(headers)
+            return requests.get(self.base_url + url, headers=headers).json()
+        except Exception as err:
+            print "Error on Auth call {} \n {}".format(self.base_url + url, err)
