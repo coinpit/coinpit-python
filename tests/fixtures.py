@@ -32,11 +32,15 @@ class AccountResult:
 info = Result()
 private_key = "cMm46vhtEuWkY68SFzZ7wNmH3T7to3AogMbW9koXzSeKChvAzvnv"
 server_pub_key = "0303f8731f3fa6e0eaf26435819172696cc2ad0751ccea2bebf89eb9c0622349d0"
+user_pub_key = '038f1800d7f006f87f1201d99ec0023b55efde7952cb2dc5573351f2ebcf7853de'
 shared_secret = "29dbd87c4cff080a464e2ea9b00050a7d9bc3f067c466f1c21a0cb1b0528bf46"
+base_url = "https://live.coinpit.me/api/v1"
+network_code = 111
+user_id = "mwXrQZ2Lct5c1XHdDXni8NWyJv9v95u6EK"
 method = "POST"
 uri = "/api/greetings"
 body = json.dumps({"key": "key", "value": "value"}, separators=(',', ':'))
-nonce = "2016-01-07 08:07:29.511",
+nonce = "1452154049511"
 headers = {'Accept'       : 'application/json',
            'Authorization': 'HMAC mwXrQZ2Lct5c1XHdDXni8NWyJv9v95u6EK:ec07768e88249056fae10ed223a6fbc70112b581a79a416bb796a0815df20be5',
            'Nonce'        : '1452154049511'}
@@ -44,4 +48,7 @@ auth_info = AuthResult()
 account = AccountResult()
 cancel_all = ["1"]
 
-rest_get_info = {"BTCUSD7G24": {"vol24H": {"instrument": "BTCUSD7G24", "btc": 111.83523126, "qty": 242}, "indexPrice": 1114.5}, "BTC1": {"vol24H": {"instrument": "BTC1", "btc": 2.0439, "qty": 2}, "indexPrice": 1114.5}, "BTCUSD7H03": {"vol24H": {"instrument": "BTCUSD7H03", "btc": 0, "qty": 0}, "indexPrice": 1114.5}}
+rest_get_info = {
+    "BTCUSD7G24": {"vol24H": {"instrument": "BTCUSD7G24", "btc": 111.83523126, "qty": 242}, "indexPrice": 1114.5},
+    "BTC1"      : {"vol24H": {"instrument": "BTC1", "btc": 2.0439, "qty": 2}, "indexPrice": 1114.5},
+    "BTCUSD7H03": {"vol24H": {"instrument": "BTCUSD7H03", "btc": 0, "qty": 0}, "indexPrice": 1114.5}}

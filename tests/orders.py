@@ -7,6 +7,7 @@ import pycoinpit
 from sinon import sinon
 g = sinon.init(globals())
 
+@unittest.skip('not yet ready')
 class OrdersTest(unittest.TestCase):
     def test_create_orders(self):
         stub = sinon.stub(requests, "get")
