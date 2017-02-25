@@ -24,7 +24,7 @@ class Rest(object):
         assert self.account is not None, "Call to server requiring auth needs account"
         try:
             headers = self.get_headers(method, url, body)
-            # print "###########{}".format(headers)
+            print "###########{}".format(headers)
             return requests.get(self.base_url + url, headers=headers).json()
         except Exception as err:
             print "Error on Auth call {} \n {}".format(self.base_url + url, err)

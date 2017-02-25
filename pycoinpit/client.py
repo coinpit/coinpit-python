@@ -12,6 +12,10 @@ class Client(object):
         self.private_key = key
         self.account = None
         self.rest = None
+
+        self.all = None
+        self.contract = None
+
         if self.private_key is None:
             return
         self.network_code = crypto.get_network_code(self.private_key)
@@ -32,6 +36,7 @@ class Client(object):
         server_pub_key = self.get_server_pubkey()
         self.account = Account(self.private_key, server_pub_key)
         self.rest = Rest(self.base_url, self.account)
+
     #
     # def info(self):
     #     return self.rest.server_call("/all/info")
@@ -62,3 +67,8 @@ class Client(object):
     #
     # def get_cancelled_orders(self, get_cancelled_spec):
     #     orders.get_cancelled(self, get_cancelled_spec)
+
+    def get_orders(self, instrument, status="open", after=None):
+        uri = "/contract/" + instrument + "/order/" + status + ("" if after is None else "?after=" + after)
+        result =  self.rest.auth_server_call("GET", uri)
+        print "############# result", result

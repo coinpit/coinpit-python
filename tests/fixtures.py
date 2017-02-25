@@ -29,8 +29,92 @@ class AccountResult:
                 'orders'       : {'BTCUSD7G24': {}, 'BTC1': {}, 'BTCUSD7G17': {}}, 'accountMargin': 0}
 
 
+class Orders:
+    def __init__(self):
+        pass
+
+    def open_orders(self):
+        return [
+            {
+                "clientid"       : "3b840065-ac31-4d1e-b7a5-368329ec2a99",
+                "stopPrice"      : 10.2,
+                "eventTime"      : 1487799840204114,
+                "uuid"           : "053a09b0-f948-11e6-9763-8aeb5bcb55ea",
+                "instrument"     : "BTC1",
+                "orderType"      : "LMT",
+                "commission"     : 20000,
+                "entryOrder"     : {},
+                "filled"         : 0,
+                "status"         : "open",
+                "normalizedPrice": 1046.3,
+                "price"          : 1046.3,
+                "entryTime"      : 1487799840204114,
+                "cushion"        : 1,
+                "crossMargin"    : False,
+                "targetPrice"    : "NONE",
+                "reservedTicks"  : 2,
+                "userid"         : "mwXrQZ2Lct5c1XHdDXni8NWyJv9v95u6EK",
+                "cancelled"      : 0,
+                "reward"         : -2500,
+                "averagePrice"   : 0,
+                "side"           : "buy",
+                "quantity"       : 1
+            }, {
+                "clientid"       : "5a54bb3c-a1ad-4ec7-bd95-236fd8a429c8",
+                "stopPrice"      : 10.2,
+                "eventTime"      : 1487799840952113,
+                "uuid"           : "05ac2c71-f948-11e6-bb90-1a2dd9de32ed",
+                "instrument"     : "BTC1",
+                "orderType"      : "LMT",
+                "commission"     : 20000,
+                "entryOrder"     : {},
+                "filled"         : 0,
+                "status"         : "open",
+                "normalizedPrice": 1069.8,
+                "price"          : 1069.8,
+                "entryTime"      : 1487799840952113,
+                "cushion"        : 1,
+                "crossMargin"    : False,
+                "targetPrice"    : "NONE",
+                "reservedTicks"  : 2,
+                "userid"         : "mwXrQZ2Lct5c1XHdDXni8NWyJv9v95u6EK",
+                "cancelled"      : 0,
+                "reward"         : -2500,
+                "averagePrice"   : 0,
+                "side"           : "buy",
+                "quantity"       : 1
+            }, {
+                "clientid"       : "9a0ec5f1-d1f9-44cd-9d20-e6cd2a7e3fa8",
+                "stopPrice"      : 10.2,
+                "eventTime"      : 1487799841703727,
+                "uuid"           : "061eeb70-f948-11e6-a092-b65b29cd387b",
+                "instrument"     : "BTC1",
+                "orderType"      : "LMT",
+                "commission"     : 20000,
+                "entryOrder"     : {},
+                "filled"         : 0,
+                "status"         : "open",
+                "normalizedPrice": 1103.3,
+                "price"          : 1103.3,
+                "entryTime"      : 1487799841703727,
+                "cushion"        : 1,
+                "crossMargin"    : False,
+                "targetPrice"    : "NONE",
+                "reservedTicks"  : 2,
+                "userid"         : "mwXrQZ2Lct5c1XHdDXni8NWyJv9v95u6EK",
+                "cancelled"      : 0,
+                "reward"         : -2500,
+                "averagePrice"   : 0,
+                "side"           : "buy",
+                "quantity"       : 1
+            }
+        ]
+
+
+orders = Orders()
 info = Result()
 private_key = "cMm46vhtEuWkY68SFzZ7wNmH3T7to3AogMbW9koXzSeKChvAzvnv"
+instrument = "BTC1"
 server_pub_key = "0303f8731f3fa6e0eaf26435819172696cc2ad0751ccea2bebf89eb9c0622349d0"
 user_pub_key = '038f1800d7f006f87f1201d99ec0023b55efde7952cb2dc5573351f2ebcf7853de'
 shared_secret = "29dbd87c4cff080a464e2ea9b00050a7d9bc3f067c466f1c21a0cb1b0528bf46"
@@ -49,6 +133,7 @@ account = AccountResult()
 cancel_all = ["1"]
 
 rest_get_info = {
-    "BTCUSD7G24": {"vol24H": {"instrument": "BTCUSD7G24", "btc": 111.83523126, "qty": 242}, "indexPrice": 1114.5},
+    "BTCUSD7G24": {"vol24H"    : {"instrument": "BTCUSD7G24", "btc": 111.83523126, "qty": 242},
+                   "indexPrice": 1114.5},
     "BTC1"      : {"vol24H": {"instrument": "BTC1", "btc": 2.0439, "qty": 2}, "indexPrice": 1114.5},
     "BTCUSD7H03": {"vol24H": {"instrument": "BTCUSD7H03", "btc": 0, "qty": 0}, "indexPrice": 1114.5}}
