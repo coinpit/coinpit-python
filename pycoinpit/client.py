@@ -70,5 +70,6 @@ class Client(object):
 
     def get_orders(self, instrument, status="open", after=None):
         uri = "/contract/" + instrument + "/order/" + status + ("" if after is None else "?after=" + after)
-        result =  self.rest.auth_server_call("GET", uri)
+        result = self.rest.auth_server_call("GET", uri)
         print "############# result", result
+        return result

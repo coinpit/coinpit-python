@@ -33,33 +33,9 @@ class Orders:
     def __init__(self):
         pass
 
-    def open_orders(self):
+    def json(self):
         return [
             {
-                "clientid"       : "3b840065-ac31-4d1e-b7a5-368329ec2a99",
-                "stopPrice"      : 10.2,
-                "eventTime"      : 1487799840204114,
-                "uuid"           : "053a09b0-f948-11e6-9763-8aeb5bcb55ea",
-                "instrument"     : "BTC1",
-                "orderType"      : "LMT",
-                "commission"     : 20000,
-                "entryOrder"     : {},
-                "filled"         : 0,
-                "status"         : "open",
-                "normalizedPrice": 1046.3,
-                "price"          : 1046.3,
-                "entryTime"      : 1487799840204114,
-                "cushion"        : 1,
-                "crossMargin"    : False,
-                "targetPrice"    : "NONE",
-                "reservedTicks"  : 2,
-                "userid"         : "mwXrQZ2Lct5c1XHdDXni8NWyJv9v95u6EK",
-                "cancelled"      : 0,
-                "reward"         : -2500,
-                "averagePrice"   : 0,
-                "side"           : "buy",
-                "quantity"       : 1
-            }, {
                 "clientid"       : "5a54bb3c-a1ad-4ec7-bd95-236fd8a429c8",
                 "stopPrice"      : 10.2,
                 "eventTime"      : 1487799840952113,
@@ -73,30 +49,6 @@ class Orders:
                 "normalizedPrice": 1069.8,
                 "price"          : 1069.8,
                 "entryTime"      : 1487799840952113,
-                "cushion"        : 1,
-                "crossMargin"    : False,
-                "targetPrice"    : "NONE",
-                "reservedTicks"  : 2,
-                "userid"         : "mwXrQZ2Lct5c1XHdDXni8NWyJv9v95u6EK",
-                "cancelled"      : 0,
-                "reward"         : -2500,
-                "averagePrice"   : 0,
-                "side"           : "buy",
-                "quantity"       : 1
-            }, {
-                "clientid"       : "9a0ec5f1-d1f9-44cd-9d20-e6cd2a7e3fa8",
-                "stopPrice"      : 10.2,
-                "eventTime"      : 1487799841703727,
-                "uuid"           : "061eeb70-f948-11e6-a092-b65b29cd387b",
-                "instrument"     : "BTC1",
-                "orderType"      : "LMT",
-                "commission"     : 20000,
-                "entryOrder"     : {},
-                "filled"         : 0,
-                "status"         : "open",
-                "normalizedPrice": 1103.3,
-                "price"          : 1103.3,
-                "entryTime"      : 1487799841703727,
                 "cushion"        : 1,
                 "crossMargin"    : False,
                 "targetPrice"    : "NONE",
