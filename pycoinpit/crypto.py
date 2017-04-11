@@ -8,6 +8,7 @@ import pyelliptic
 def get_headers(user_id, shared_secret, nonce, method, uri, body=None):
     request_string = '{"method":"' + method + '","uri":"' + uri + (
     '",' if (body == None) else '","body":' + body + ',') + '"nonce":' + nonce + '}'
+    print "Request: " + request_string
     mac = hmac.new(shared_secret, request_string, hashlib.sha256)
     sig = mac.hexdigest()
     headers = {

@@ -37,10 +37,10 @@ class Client(object):
         self.account = Account(self.private_key, server_pub_key)
         self.rest = Rest(self.base_url, self.account)
 
-    #
-    # def info(self):
-    #     return self.rest.server_call("/all/info")
-    #
+
+    def info(self):
+        return self.rest.server_call("/all/info")
+
     # def get_account(self):
     #     return self.rest.auth_server_call("GET", "/account")
     #
@@ -71,5 +71,4 @@ class Client(object):
     def get_orders(self, instrument, status="open", after=None):
         uri = "/contract/" + instrument + "/order/" + status + ("" if after is None else "?after=" + after)
         result = self.rest.auth_server_call("GET", uri)
-        print "############# result", result
         return result

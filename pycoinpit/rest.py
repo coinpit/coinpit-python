@@ -3,8 +3,16 @@ import time
 
 import crypto
 
+methods = {}
+methods['GET']     = requests.get
+methods['POST']    = requests.post
+methods['PUT']     = requests.put
+methods['DELETE']  = requests.delete
+methods['PATCH']   = requests.patch
+methods['OPTIONS'] = requests.options
 
 class Rest(object):
+
     def __init__(self, base_url, account=None):
         self.base_url = base_url
         self.account = account
@@ -24,8 +32,8 @@ class Rest(object):
         assert self.account is not None, "Call to server requiring auth needs account"
         try:
             headers = self.get_headers(method, url, body)
-            print "###########{}".format(headers)
-            return requests.get(self.base_url + url, headers=headers).json()
+            method = methods[method]
+            return method(self.base_url + url, body, headers=headers).json()
         except Exception as err:
             print "Error on Auth call {} \n {}".format(self.base_url + url, err)
 
