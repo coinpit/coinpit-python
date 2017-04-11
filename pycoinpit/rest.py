@@ -1,3 +1,4 @@
+import json
 import requests
 import time
 
@@ -31,9 +32,11 @@ class Rest(object):
     def auth_server_call(self, method, url, body=None):
         assert self.account is not None, "Call to server requiring auth needs account"
         try:
-            headers = self.get_headers(method, url, body)
+            parsed_body = None if body is None else json.loads(body)
+            header_body = None if parsed_body is None else json.dumps(parsed_body, separators=(',', ':'))
+            headers = self.get_headers(method, url, header_body)
             method = methods[method]
-            return method(self.base_url + url, body, headers=headers).json()
+            return method(url=self.base_url + url, json=parsed_body, headers=headers).json()
         except Exception as err:
             print "Error on Auth call {} \n {}".format(self.base_url + url, err)
 

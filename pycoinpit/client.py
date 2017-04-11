@@ -5,7 +5,7 @@ from rest import Rest
 
 
 class Client(object):
-    def __init__(self, key=None):
+    def __init__(self, key=None, url=None):
         self.testnet_base_url = "https://live.coinpit.me/api/v1"
         self.livenet_base_url = "https://live.coinpit.io/api/v1"
         self.base_url_map = {0: self.livenet_base_url, 111: self.testnet_base_url}
@@ -19,7 +19,8 @@ class Client(object):
         if self.private_key is None:
             return
         self.network_code = crypto.get_network_code(self.private_key)
-        self.base_url = self.base_url_map[self.network_code]
+        self.base_url = url if url is not None else self.base_url_map[self.network_code]
+        print 'url found ' + self.base_url
         self.rest = Rest(self.base_url)
         # self.connect()
 

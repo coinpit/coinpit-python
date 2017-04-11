@@ -23,9 +23,9 @@ def usage():
   sys.exit(2)
 
 keyfile = None
-
+url = None
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "k:", ["keyfile="])
+    opts, args = getopt.getopt(sys.argv[1:], "k:u:", ["keyfile=", "url="])
 except getopt.GetoptError as err:
     print "Error parsing arguments", str(err)
     usage()
@@ -35,6 +35,8 @@ for opt, arg in opts:
         usage()
     elif opt in ("-k", "--keyfile"):
         keyfile = arg
+    elif opt in ("-u", "--url"):
+        url = arg
 
 if keyfile == None:
     usage()
@@ -42,7 +44,7 @@ if keyfile == None:
 print "Using keyfile: ", keyfile
 
 key = json.load(open(keyfile))
-coinpit_me = client.Client(key['privateKey'])
+coinpit_me = client.Client(key['privateKey'], url)
 coinpit_me.connect()
 user = key['address']
 site = ".me"
@@ -65,7 +67,7 @@ while not done:
         if(methods[method_name] == None):
             print method_name + " unrecognized HTTP method"
             continue
-        print coinpit_me.rest.auth_server_call(method_name, url, body)
+        print json.dumps(coinpit_me.rest.auth_server_call(method_name, url, body))
         if(body != None):
             print body
     except EOFError:
