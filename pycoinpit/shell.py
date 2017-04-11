@@ -3,6 +3,13 @@ import client
 import atexit
 import sys, getopt
 import json
+try:
+    import readline
+except ImportError:
+    pass
+else:
+    import rlcompleter
+    readline.parse_and_bind('set editing-mode emacs')
 
 methods = {}
 
@@ -19,7 +26,7 @@ def quit_gracefully():
 atexit.register(quit_gracefully)
 
 def usage():
-  print "Usage: ", sys.argv[0], " -k keyfile"
+  print "Usage: ", sys.argv[0], " -k keyfile -u url"
   sys.exit(2)
 
 keyfile = None
@@ -65,7 +72,7 @@ while not done:
         url = parts[1]
         body = None if len(parts) <= 2 else parts[2]
         if(methods[method_name] == None):
-            print method_name + " unrecognized HTTP method"
+            print method_name + " Unrecognized HTTP method"
             continue
         print json.dumps(coinpit_me.rest.auth_server_call(method_name, url, body))
         if(body != None):
