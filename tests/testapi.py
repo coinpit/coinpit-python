@@ -11,16 +11,14 @@ g = sinon.init(globals())
 class OrdersTest(unittest.TestCase):
 
     def test_get_open_orders(self):
+        stub = sinon.stub(requests, "get")
+        stub.onCall(1).returns(fixtures.auth_info)
+        stub.onCall(2).returns(fixtures.orders)
         coinpit_me = pycoinpit.Client(fixtures.private_key)
-        stub = sinon.stub(requests, "get")
-        stub.returns(fixtures.auth_info)
         coinpit_me.connect()
-        stub.restore()
-        stub = sinon.stub(requests, "get")
-        stub.returns(fixtures.orders)
         info = coinpit_me.get_orders(fixtures.instrument)
         stub.restore()
-        self.assertEqual(info, fixtures.orders.json())
+        self.assertEqual(info, fixtures.orders)
 
     @unittest.skip('not yet ready')
     def test_create_orders(self):
@@ -30,7 +28,7 @@ class OrdersTest(unittest.TestCase):
         coinpit_me.connect()
         info = coinpit_me.create_orders(fixtures.create_orders)
         # stub.restore()
-        self.assertEqual(info, fixtures.created_orders.json())
+        self.assertEqual(info, fixtures.created_orders)
 
     @unittest.skip('not yet ready')
     def test_update_orders(self):
@@ -39,7 +37,7 @@ class OrdersTest(unittest.TestCase):
         coinpit_me = pycoinpit.Client(fixtures.private_key)
         info = coinpit_me.update_orders(fixtures.update_orders)
         stub.restore()
-        self.assertEqual(info, fixtures.patched.json())
+        self.assertEqual(info, fixtures.patched)
 
     @unittest.skip('not yet ready')
     def test_cancel_orders(self):
@@ -48,7 +46,7 @@ class OrdersTest(unittest.TestCase):
         coinpit_me = pycoinpit.Client(fixtures.private_key)
         info = coinpit_me.cancel_orders(fixtures.cancel_orders)
         stub.restore()
-        self.assertEqual(info, fixtures.patched.json())
+        self.assertEqual(info, fixtures.patched)
 
     @unittest.skip('not yet ready')
     def test_cancel_all_orders(self):
@@ -66,7 +64,7 @@ class OrdersTest(unittest.TestCase):
         coinpit_me = pycoinpit.Client(fixtures.private_key)
         info = coinpit_me.patch_orders(fixtures.patch_orders)
         stub.restore()
-        self.assertEqual(info, fixtures.patched.json())
+        self.assertEqual(info, fixtures.patched)
 
     @unittest.skip('not yet ready')
     def test_get_closed_orders(self):

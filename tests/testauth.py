@@ -20,7 +20,7 @@ class AuthTest(unittest.TestCase):
         coinpit_me = Client(fixtures.private_key)
         info = coinpit_me.rest.get("/all/info")
         stub.restore()
-        self.assertEqual(info, fixtures.info.json())
+        self.assertEqual(info, fixtures.info)
 
     def test_no_auth_connect(self):
         coinpit_me = Client()

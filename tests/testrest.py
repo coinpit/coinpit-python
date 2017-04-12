@@ -15,7 +15,7 @@ class RestTest(unittest.TestCase):
         rest = Rest(fixtures.base_url)
         info = rest.get("/all/info")
         stub.restore()
-        self.assertEqual(info, fixtures.info.json())
+        self.assertEqual(info, fixtures.info)
 
     def test_get_auth(self):
         stub = sinon.stub(requests, "get")
@@ -24,7 +24,7 @@ class RestTest(unittest.TestCase):
         rest_client = Rest(fixtures.base_url, account)
         info = rest_client.get("/account")
         stub.restore()
-        self.assertEqual(info, fixtures.account.json())
+        self.assertEqual(info, fixtures.account)
 
 
 if __name__ == '__main__':

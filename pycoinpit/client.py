@@ -20,7 +20,6 @@ class Client(object):
             return
         self.network_code = crypto.get_network_code(self.private_key)
         self.base_url = url if url is not None else self.base_url_map[self.network_code]
-        print 'url found ' + self.base_url
         self.rest = Rest(self.base_url)
         # self.connect()
 
@@ -31,6 +30,8 @@ class Client(object):
             raise ValueError('Private key needed for protected endpoints')
         user_pub_key = crypto.get_pub_key(self.private_key)
         auth_info = requests.get(self.base_url + "/auth/" + user_pub_key, headers={'Accept': 'application/json'}).json()
+        if isinstance(auth_info, dict) and 'error' in auth_info.keys() is not None:
+            raise RuntimeError('Error getting public key: ' + auth_info['error'])
         return auth_info['serverPublicKey']
 
     def connect(self):
@@ -42,9 +43,9 @@ class Client(object):
     def info(self):
         return self.rest.server_call("/all/info")
 
-    # def get_account(self):
-    #     return self.rest.auth_server_call("GET", "/account")
-    #
+    def get_account(self):
+        return self.rest.auth_server_call("GET", "/account")
+
     # def patch_orders(self, patch_spec):
     #     orders.patch(self, patch_spec)
     #
