@@ -128,3 +128,5 @@ while not done:
     except KeyboardInterrupt:
         print "^C"
         pass
+    except Exception as err:
+        print "Error on request:\n {}".format(err)

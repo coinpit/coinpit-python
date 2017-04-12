@@ -4,7 +4,7 @@ setup(
   packages = ['pycoinpit'], # this must be the same as the name above
   scripts = ['coinpit.py'],
   install_requires=[ "pybitcointools", "pyelliptic", "requests" ],
-  version = '0.1.0',
+  version = '0.1.1',
   description = 'Coinpit Python Client',
   author = 'Coinpit',
   author_email = 'info@coinpit.io',
@@ -14,6 +14,8 @@ setup(
   classifiers = [],
 )
 
+# Register package with pypi
+#  setup.py register
 # Build:
 #  python setup.py sdist
 # To publish on test:
