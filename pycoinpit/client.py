@@ -21,7 +21,6 @@ class Client(object):
         self.network_code = crypto.get_network_code(self.private_key)
         self.base_url = url if url is not None else self.base_url_map[self.network_code]
         self.rest = Rest(self.base_url)
-        # self.connect()
 
     def get_server_pubkey(self):
         if self.account is not None:

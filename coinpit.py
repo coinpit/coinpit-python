@@ -12,12 +12,12 @@ else:
     import rlcompleter
     readline.parse_and_bind('set editing-mode emacs')
 
-methods = {}
 verbose = False
-pretty = False
+pretty  = False
 keyfile = None
-url = None
+url     = None
 
+methods            = {}
 methods['GET']     = True
 methods['POST']    = True
 methods['PUT']     = True
@@ -32,6 +32,9 @@ atexit.register(quit_gracefully)
 
 def usage():
   print "Usage: ", sys.argv[0], " -k keyfile [-v] [-u url]"
+  print "    keyfile: Your json file to access coinpit app"
+  print "         -v: Verbose"
+  print "     -u url: Use alternate url"
   sys.exit(2)
 
 def dump_headers(headers):
@@ -69,7 +72,7 @@ coinpit_me.connect()
 user = key['address']
 site = coinpit_me.base_url
 done = False
-prompt = user + ">"
+prompt = user + ">" if sys.stdout.isatty() and sys.stdin.isatty() else ""
 
 def help():
     print "\nConnected to ", site

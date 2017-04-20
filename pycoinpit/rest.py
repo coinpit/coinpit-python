@@ -43,7 +43,6 @@ class Rest(object):
             canonical_body = self.canonical(body)
             sparse_body    = self.sparse_json(canonical_body)
             headers        = self.get_headers(method, url, sparse_body)
-            # self.methods['GET']     = requests.get
             method         = self.methods[method]
 
             return method(url=self.base_url + url, json=canonical_body, headers=headers)
