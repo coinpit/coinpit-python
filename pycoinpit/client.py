@@ -3,7 +3,6 @@ import crypto
 from account import Account
 from rest import Rest
 
-
 class Client(object):
     def __init__(self, key=None, url=None):
         self.testnet_base_url = "https://live.coinpit.me/api/v1"

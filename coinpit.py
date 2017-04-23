@@ -80,10 +80,10 @@ def help():
     print "For more information: https://coinpit.io/api"
     print "\nExamples: "
     print '  GET /account'
-    print '  POST /contract/BTCUSD7J14/order/open [{"price":1201.2,"side":"buy","quantity":10,"orderType":"LMT"}]'
-    print '  PUT /contract/BTCUSD7J14/order/open [{"price":1201.3,"uuid":"b117ef30-1f50-11e7-b324-e2f410d2f5f7"}]'
-    print '  GET /contract/BTCUSD7J14/order/open'
-    print '  DELETE /contract/BTCUSD7J14/order/open/b117ef30-1f50-11e7-b324-e2f410d2f5f7'
+    print '  POST /order [{"price":1201.2,"side":"buy","quantity":10,"orderType":"LMT"}]'
+    print '  PUT /order [{"price":1201.3,"uuid":"b117ef30-1f50-11e7-b324-e2f410d2f5f7"}]'
+    print '  GET /order'
+    print '  DELETE /order/b117ef30-1f50-11e7-b324-e2f410d2f5f7'
     print ' '
 
 if verbose:
@@ -117,7 +117,7 @@ while not done:
         if(verbose):
             canonical = coinpit_me.rest.canonical(body)
             sparse = coinpit_me.rest.sparse_json(canonical)
-            print "{} {} HTTP/1.0".format(method_name, site + url)
+            print "{} {} HTTP/1.1".format(method_name, site + url)
             dump_headers(coinpit_me.rest.get_headers(method_name, url, sparse))
             print "" if body is None else json.dumps(canonical, indent=4, separators=(',', ':'))
             print result.status_code

@@ -1,13 +1,15 @@
+import crypto
 import json
+import re
 import requests
 import time
 
-import crypto
 
 class Rest(object):
 
     def __init__(self, base_url, account=None):
         self.base_url = base_url
+        self.host = re.split('[:/]*', self.base_url)[1]
         self.account = account
         self.methods = {}
         self.methods['GET']     = requests.get
@@ -52,4 +54,5 @@ class Rest(object):
     def get_headers(self, method, url, body):
         nonce = str(long(time.time() * 1000))
         headers = crypto.get_headers(self.account.user_id, self.account.shared_secret, nonce, method, url, body)
+        headers['Host'] = self.host
         return headers

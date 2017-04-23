@@ -1,10 +1,11 @@
+#!/usr/bin/env python
 from distutils.core import setup
 setup(
   name = 'pycoinpit',
   packages = ['pycoinpit'], # this must be the same as the name above
   scripts = ['coinpit.py'],
   install_requires=[ "pybitcointools", "pyelliptic", "requests" ],
-  version = '0.1.1',
+  version = '0.1.2',
   description = 'Coinpit Python Client',
   author = 'Coinpit',
   author_email = 'info@coinpit.io',
