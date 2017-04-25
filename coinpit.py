@@ -80,7 +80,7 @@ def help():
     print "For more information: https://coinpit.io/api"
     print "\nExamples: "
     print '  GET /account'
-    print '  POST /order [{"price":1201.2,"side":"buy","quantity":10,"orderType":"LMT"}]'
+    print '  POST /order [{"price":1201.2,"side":"buy","quantity":10,"orderType":"LMT","instrument":"BTCUSDW"}]'
     print '  PUT /order [{"price":1201.3,"uuid":"b117ef30-1f50-11e7-b324-e2f410d2f5f7"}]'
     print '  GET /order'
     print '  DELETE /order/b117ef30-1f50-11e7-b324-e2f410d2f5f7'
