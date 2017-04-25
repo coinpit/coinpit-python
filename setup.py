@@ -4,7 +4,7 @@ setup(
   name = 'pycoinpit',
   packages = ['pycoinpit'], # this must be the same as the name above
   scripts = ['coinpit.py'],
-  install_requires=[ "pybitcointools", "pyelliptic", "requests" ],
+  install_requires=[ "pybitcointools", "pyelliptic==1.5.7", "requests" ],
   version = '0.1.3',
   description = 'Coinpit Python Client',
   author = 'Coinpit',
